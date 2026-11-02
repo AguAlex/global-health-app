@@ -1,0 +1,30 @@
+# Mediul virtual Python
+.venv/
+venv/
+ENV/
+env/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Fișiere de mediu și date senzitive (parole DB)
+.env
+
+# Cache de date brute descărcate (fișiere JSON/CSV mari)
+data/raw/*
+!data/raw/.gitkeep
+
+# IDE-uri și editoare de text
+.vscode/
+.idea/
+*.swp
+
+# Log-uri
+*.log
+
+# Exporturi de bază de date temporare
+*.dump
