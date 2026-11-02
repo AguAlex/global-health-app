@@ -20,15 +20,15 @@ def run_pipeline():
         clean_who = clean_who_data(raw_who, "SDGSUICIDE")
         load_observations(db, clean_who, "WHO GHO", "SDGSUICIDE", who_url)
 
-        # 3. Extragere + Curățare + Încărcare Banca Mondială (Unemployment)
-        print("\n--- PASUL 3: Procesare Indicator Banca Mondială (SL.UEM.TOTL.ZS) ---")
+        # 3. Extragere + Curățare + Încărcare World Bank (Unemployment)
+        print("\n--- PASUL 3: Procesare Indicator World Bank (SL.UEM.TOTL.ZS) ---")
         wb_unemp_url = "https://api.worldbank.org/v2/country/all/indicator/SL.UEM.TOTL.ZS"
         raw_unemp = extract_worldbank_data("SL.UEM.TOTL.ZS", 2010, 2023)
         clean_unemp = clean_worldbank_data(raw_unemp, "SL.UEM.TOTL.ZS")
         load_observations(db, clean_unemp, "World Bank", "SL.UEM.TOTL.ZS", wb_unemp_url)
 
-        # 4. Extragere + Curățare + Încărcare Banca Mondială (GDP per Capita)
-        print("\n--- PASUL 4: Procesare Indicator Banca Mondială (NY.GDP.PCAP.CD) ---")
+        # 4. Extragere + Curățare + Încărcare World Bank (GDP per Capita)
+        print("\n--- PASUL 4: Procesare Indicator World Bank (NY.GDP.PCAP.CD) ---")
         wb_gdp_url = "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD"
         raw_gdp = extract_worldbank_data("NY.GDP.PCAP.CD", 2010, 2023)
         clean_gdp = clean_worldbank_data(raw_gdp, "NY.GDP.PCAP.CD")
