@@ -1,0 +1,31 @@
+# Python virtual environment
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Environment files and sensitive data (DB passwords)
+.env
+
+# Downloaded raw data cache (large JSON/CSV files)
+data/raw/**
+!data/raw/**/
+!data/raw/**/.gitkeep
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# Temporary database exports
+*.dump
