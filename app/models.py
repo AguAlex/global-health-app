@@ -1,9 +1,12 @@
 from datetime import datetime
 from decimal import Decimal
+from enum import StrEnum
 
 from sqlalchemy import (
     BigInteger,
+    Boolean,
     DateTime,
+    Enum,
     ForeignKey,
     Index,
     Numeric,
@@ -18,6 +21,14 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 class Base(DeclarativeBase):
     pass
+
+
+class Sex(StrEnum):
+    """Sex dimension of an observation (WHO GHO / xMart codes)."""
+
+    BOTH = "BTSX"
+    MALE = "MLE"
+    FEMALE = "FMLE"
 
 
 class Source(Base):
@@ -67,8 +78,20 @@ class Observation(Base):
         ForeignKey("indicator.indicator_id"), nullable=False
     )
     year: Mapped[int] = mapped_column(SmallInteger, nullable=False)
-    sex: Mapped[str] = mapped_column(String(10), server_default="BTSX", nullable=False)
+    sex: Mapped[Sex] = mapped_column(
+        Enum(
+            Sex,
+            native_enum=False,
+            length=10,
+            values_callable=lambda members: [m.value for m in members],
+        ),
+        server_default=Sex.BOTH.value,
+        nullable=False,
+    )
     value: Mapped[Decimal | None] = mapped_column(Numeric(18, 4))
+    is_outlier: Mapped[bool] = mapped_column(
+        Boolean, server_default="false", nullable=False
+    )
     imported_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )

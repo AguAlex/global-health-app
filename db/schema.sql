@@ -27,6 +27,7 @@ CREATE TABLE observation (
     year SMALLINT NOT NULL, 
     sex VARCHAR(10) NOT NULL DEFAULT 'BTSX', 
     value NUMERIC(18, 4), 
+    is_outlier BOOLEAN NOT NULL DEFAULT false, 
     imported_at TIMESTAMPTZ NOT NULL DEFAULT now(), 
     CONSTRAINT uq_observation UNIQUE (country_iso3, indicator_id, year, sex) 
 ); 
