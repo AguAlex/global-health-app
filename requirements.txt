@@ -10,3 +10,5 @@ pycountry
 pytest
 httpx
 alembic
+jupyter
+ipykernel
